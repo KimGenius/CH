@@ -12,7 +12,7 @@ class SplashActivity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_splash)
-    GlideUtil.setImage(this@SplashActivity, R.drawable.ic_c, logo)
+    GlideUtil.setImage(this@SplashActivity, R.drawable.ic_c_w, logo)
     logo.startAnimation(AnimationUtils.loadAnimation(this@SplashActivity, R.anim.splash_logo))
     Handler().postDelayed({
       IntentUtil.finishMoveActivity(this@SplashActivity, MainActivity::class.java)
