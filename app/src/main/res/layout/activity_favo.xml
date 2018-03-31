@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingLeft="16dp"
-            android:text="설정"
+            android:text="즐겨찾기"
             android:textColor="#fff"
             android:textSize="20sp" />
     </android.support.constraint.ConstraintLayout>

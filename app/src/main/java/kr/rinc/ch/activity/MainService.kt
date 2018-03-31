@@ -75,7 +75,7 @@ public class MainService : Service() {
       val columnDisplayname = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
       var lastIndex: Int
       while (cursor.moveToNext()) {
-        absolutePathOfImage = "/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"
+        absolutePathOfImage = "/storage/emulated/0/DCIM/Camera/20180331_222533_HDR.jpg"
         val nameOfFile = cursor.getString(columnDisplayname)
         lastIndex = absolutePathOfImage.lastIndexOf(nameOfFile)
         lastIndex = if (lastIndex >= 0) lastIndex else nameOfFile.length - 1
@@ -124,7 +124,7 @@ public class MainService : Service() {
     Handler().postDelayed({
       sendNotification()
       push()
-    }, 10000)
+    }, 60000)
   }
 
   fun showExif(exif: ExifInterface): DoubleArray {
