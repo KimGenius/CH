@@ -1,106 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/c11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/colorMain">
 
-        <ScrollView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:text="설정"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/c12"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/c11">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:text="추억속 공간"
+            android:textColor="#000"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="16dp"
+            android:text="반경 100미터"
+            android:textColor="#333"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/c12">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/head"
-                    android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:background="@color/colorMain">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="현재 위치"
-                        android:textColor="#fff"
-                        android:textSize="34sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.053"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.06" />
-
-                    <TextView
-                        android:id="@+id/currentImageCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="일치 사진 45장"
-                        android:textColor="#fff"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.053"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.20" />
-
-                    <ImageView
-                        android:id="@+id/likeHead"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/ic_star_y"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.8"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.085" />
-
-                    <ImageView
-                        android:id="@+id/shareHead"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:background="@drawable/ic_share_w"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.085" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/headRecycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.785">
-
-                    </android.support.v7.widget.RecyclerView>
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mainRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/head"
-                    android:layout_marginBottom="56dp"></android.support.v7.widget.RecyclerView>
-
-            </RelativeLayout>
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7"
+            android:lines="5"
+            android:text="미림여자정보과학고등학교 기획자 이주현\n
+선린인터넷고등학교 디자이너 김학준\n
+세명컴퓨터고등학교 개발자 김영재\n
+세명컴퓨터고등학교 개발자 김성훈\n
+대덕소프트웨어고등학교 개발자 인상민" />
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,7 +99,7 @@
                 android:id="@+id/imgMain"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/ic_c"
+                android:background="@drawable/ic_c_g"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -134,7 +112,6 @@
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="메인화면"
-                android:textColor="@color/colorMain"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -145,7 +122,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cameraBtn"
             android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.25">
 
@@ -215,7 +192,7 @@
                 android:id="@+id/imgSet"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/settings_1"
+                android:background="@drawable/ic_setting_b"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -229,6 +206,7 @@
                 android:gravity="center"
                 android:text="설정"
                 android:textSize="12sp"
+                android:textColor="@color/colorMain"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

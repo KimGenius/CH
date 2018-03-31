@@ -15,7 +15,7 @@ class HeadImageListAdapter(private val context: Context, private val gson: Image
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     //todo
     val gridViewHolder = holder as GridViewHolder
-    gridViewHolder.itemView.createAt.text = gson.imageInfo[position].name
+//    gridViewHolder.itemView.createAt.text = gson.imageInfo[position].name
     GlideUtil.setImage(context, gson.imageInfo[position].file, gridViewHolder.itemView.bg)
   }
 

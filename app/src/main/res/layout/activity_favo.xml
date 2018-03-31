@@ -1,106 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/c11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/colorMain">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:text="설정"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </android.support.constraint.ConstraintLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mainRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/c11"
+        android:layout_marginBottom="56dp">
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/head"
-                    android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:background="@color/colorMain">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="현재 위치"
-                        android:textColor="#fff"
-                        android:textSize="34sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.053"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.06" />
-
-                    <TextView
-                        android:id="@+id/currentImageCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="일치 사진 45장"
-                        android:textColor="#fff"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.053"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.20" />
-
-                    <ImageView
-                        android:id="@+id/likeHead"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/ic_star_y"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.8"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.085" />
-
-                    <ImageView
-                        android:id="@+id/shareHead"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:background="@drawable/ic_share_w"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.085" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/headRecycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.785">
-
-                    </android.support.v7.widget.RecyclerView>
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mainRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/head"
-                    android:layout_marginBottom="56dp"></android.support.v7.widget.RecyclerView>
-
-            </RelativeLayout>
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,7 +48,7 @@
                 android:id="@+id/imgMain"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/ic_c"
+                android:background="@drawable/ic_c_g"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -134,7 +61,6 @@
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="메인화면"
-                android:textColor="@color/colorMain"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -145,7 +71,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cameraBtn"
             android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.25">
 
@@ -184,7 +110,7 @@
                 android:id="@+id/imgFa"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/ic_star"
+                android:background="@drawable/ic_star_b"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -197,6 +123,7 @@
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="즐겨찾기"
+                android:textColor="@color/colorMain"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

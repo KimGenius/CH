@@ -1,123 +1,40 @@
 package kr.rinc.ch.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
-import android.app.Notification
-import android.app.NotificationManager
-import android.os.Bundle
-import android.widget.Toast
-import android.media.ExifInterface
-import android.os.Build
-import android.util.Log
-import android.text.TextUtils
-import android.provider.MediaStore.MediaColumns
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
-import kotlinx.android.synthetic.main.activity_main.*
-import kr.rinc.ch.R
-import java.io.IOException
-import android.content.Intent
-import android.app.PendingIntent
-import android.app.Service
 import android.content.Context
-import android.net.Uri
-import android.support.v4.app.NotificationCompat
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.location.LocationManager
-import android.media.Image
+import android.media.ExifInterface
+import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.widget.GridLayoutManager
-import android.view.View
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
+import android.text.TextUtils
+import android.util.Log
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
+import kr.rinc.ch.R
 import kr.rinc.ch.adapter.HeadImageListAdapter
 import kr.rinc.ch.adapter.MainImageVListAdapter
 import kr.rinc.ch.model.ImageInfo
 import kr.rinc.ch.model.ImageList
 import kr.rinc.ch.model.ImageListWrap
 import kr.rinc.ch.util.IntentUtil
-import kr.rinc.ch.util.SharedUtil
 import java.io.File
+import java.io.IOException
 
-
-class MainActivity : BaseActivity() {
+class FavoActivity : BaseActivity(){
   var imageInfo = ArrayList<ImageInfo>()
-  var asdf = ArrayList<ImageList>()
-
-  @SuppressLint("MissingPermission")
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    val permissionlistener = object : PermissionListener {
-      override fun onPermissionGranted() {
-        val locationManager = this@MainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val locationProvider = LocationManager.GPS_PROVIDER;
-        val lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-        if (lastKnownLocation != null) {
-          val lng = lastKnownLocation.longitude;
-          val lat = lastKnownLocation.latitude;
-          getPathOfAllImages(lat, lng)
-//          Log.d("test MAIN", getDistance(lat, lat, lng, lng).toString())
-//          Log.d("Main", "longtitude=" + lng + ", latitude=" + lat);
-        }
-//        Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
-      }
-
-      override fun onPermissionDenied(deniedPermissions: ArrayList<String>) {
-        Toast.makeText(this@MainActivity, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show()
-      }
-    }
-    TedPermission.with(this)
-        .setPermissionListener(permissionlistener)
-        .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-        .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        .check()
-    val layoutManager = GridLayoutManager(this@MainActivity, 1)
-    layoutManager.orientation = GridLayoutManager.HORIZONTAL
-    headRecycler.layoutManager = layoutManager
-//    for (i in response.body()!!.projects) {
-//      Log.d("projectList : ", i.toString())
-//    }
-
-
-    shareHead.setOnClickListener {
-      val shareIntent = Intent()
-      shareIntent.action = Intent.ACTION_SEND_MULTIPLE
-      val imageList = ArrayList<Uri>()
-      for (image in imageInfo) {
-        imageList.add(image.uri)
-      }
-      shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageList)
-      shareIntent.type = "image/*"
-      startActivity(Intent.createChooser(shareIntent, "Share images to.."))
-    }
-
-    swipe.setOnRefreshListener {
-      val locationManager = this@MainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-      val locationProvider = LocationManager.GPS_PROVIDER;
-      val lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-      if (lastKnownLocation != null) {
-        val lng = lastKnownLocation.longitude;
-        val lat = lastKnownLocation.latitude;
-        imageInfo = ArrayList<ImageInfo>()
-        getPathOfAllImages(lat, lng)
-//        Log.d("test MAIN", getDistance(lat, lat, lng, lng).toString())
-//        Log.d("Main", "longtitude=" + lng + ", latitude=" + lat);
-      }
-      swipe.isRefreshing = false
-    }
-
-    val servi = Intent(this@MainActivity, MainService::class.java)
-    startService(servi)
-
-
-    val layoutManager1 = GridLayoutManager(this@MainActivity, 1)
+    setContentView(R.layout.activity_favo)
+    val layoutManager1 = GridLayoutManager(this@FavoActivity, 1)
     layoutManager1.orientation = GridLayoutManager.VERTICAL
     mainRecycler.layoutManager = layoutManager1
-
+    imageInfo.add(ImageInfo(Uri.parse("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), File("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), 37.0, 12.0))
+    imageInfo.add(ImageInfo(Uri.parse("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), File("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), 37.0, 12.0))
+    imageInfo.add(ImageInfo(Uri.parse("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), File("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), 37.0, 12.0))
+    imageInfo.add(ImageInfo(Uri.parse("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), File("/storage/emulated/0/DCIM/Camera/20180401_043713_HDR.jpg"), 37.0, 12.0))
     val testImageList = ImageList(imageInfo, "")
     val imageList = ArrayList<ImageList>()
     imageList.add(testImageList)
@@ -125,39 +42,17 @@ class MainActivity : BaseActivity() {
     imageList.add(testImageList)
 
     val testImageListWrap = ImageListWrap(imageList)
-    mainRecycler.adapter = MainImageVListAdapter(this@MainActivity, testImageListWrap)
-    likeHead.setOnClickListener {
-      //      val gson = Gson()
-//      val result = gson.toJson(imageInfo)
-//      SharedUtil.setList(this@MainActivity, result)
-//      val shared = SharedUtil.getList(this@MainActivity)
-//      Log.d("asdf", shared)
-//      val type = object : TypeToken<ArrayList<ImageInfo>>() {}.type
-//      val imageList = ImageList(GsonBuilder().create().fromJson(shared, type), "")
-//      Log.d("test", imageList.imageInfo[0].toString())
-//      Log.d("test", imageList.imageInfo[1].toString())
-//
-//      val layoutManager1 = GridLayoutManager(this@MainActivity, 1)
-//      layoutManager1.orientation = GridLayoutManager.VERTICAL
-//      mainRecycler.layoutManager = layoutManager1
-//      val testImageListWrap = ImageListWrap(ArrayList<ImageList>(imageList))
-//      mainRecycler.adapter = MainImageVListAdapter(this@MainActivity, testImageListWrap)
-    }
+    mainRecycler.adapter = MainImageVListAdapter(this@FavoActivity, testImageListWrap)
     setBtn()
-
   }
-//
-//    logTokenButton.setOnClickListener {
-//      sendNotification()
-//    }
 
   fun setBtn() {
-    settingBtn.setOnClickListener {
-      IntentUtil.moveActivity(this@MainActivity, SettingActivity::class.java)
+    mainBtn.setOnClickListener {
+      IntentUtil.moveActivity(this@FavoActivity, MainActivity::class.java)
     }
 
-    favoBtn.setOnClickListener {
-      IntentUtil.moveActivity(this@MainActivity, FavoActivity::class.java)
+    settingBtn.setOnClickListener {
+      IntentUtil.moveActivity(this@FavoActivity, SettingActivity::class.java)
     }
 
     cameraBtn.setOnClickListener {
@@ -171,7 +66,7 @@ class MainActivity : BaseActivity() {
     try {
       // Find the last picture
 //      Log.d("log : ", data.data.toString())
-      val locationManager = this@MainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+      val locationManager = this@FavoActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
       val locationProvider = LocationManager.GPS_PROVIDER;
       val lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
       if (lastKnownLocation != null) {
@@ -215,11 +110,11 @@ class MainActivity : BaseActivity() {
   private fun getPathOfAllImages(myLat: Double, myLng: Double): ArrayList<String> {
     val result = ArrayList<String>()
     val uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-    val projection = arrayOf(MediaColumns.DATA, MediaColumns.DISPLAY_NAME)
+    val projection = arrayOf(MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.DISPLAY_NAME)
 
-    val cursor = contentResolver.query(uri, projection, null, null, MediaColumns.DATE_ADDED + " desc")
-    val columnIndex = cursor!!.getColumnIndexOrThrow(MediaColumns.DATA)
-    val columnDisplayname = cursor.getColumnIndexOrThrow(MediaColumns.DISPLAY_NAME)
+    val cursor = contentResolver.query(uri, projection, null, null, MediaStore.MediaColumns.DATE_ADDED + " desc")
+    val columnIndex = cursor!!.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
+    val columnDisplayname = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
     var lastIndex: Int
     while (cursor.moveToNext()) {
       val absolutePathOfImage = cursor.getString(columnIndex)
@@ -258,7 +153,7 @@ class MainActivity : BaseActivity() {
     Log.i("getPathOfAllImages", result.size.toString())
     currentImageCount.text = "일치 사진 " + result.size.toString() + "장"
     val testImageList = ImageList(imageInfo, "")
-    headRecycler.adapter = HeadImageListAdapter(this@MainActivity, testImageList)
+    headRecycler.adapter = HeadImageListAdapter(this@FavoActivity, testImageList)
     return result
   }
 
