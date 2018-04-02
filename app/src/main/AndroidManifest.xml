@@ -31,7 +31,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.FavoActivity" />
-        <service android:name=".activity.MainService" />
+        <!--<service android:name=".activity.MainService" />-->
 
     </application>
 </manifest>

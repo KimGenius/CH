@@ -110,8 +110,8 @@ class MainActivity : BaseActivity() {
       swipe.isRefreshing = false
     }
 
-    val servi = Intent(this@MainActivity, MainService::class.java)
-    startService(servi)
+//    val servi = Intent(this@MainActivity, MainService::class.java)
+//    startService(servi)
 
 
     val layoutManager1 = GridLayoutManager(this@MainActivity, 1)
